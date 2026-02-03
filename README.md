@@ -1,6 +1,4 @@
-You are absolutely right. Jumping straight into **Argo CD** can be overwhelming because it requires a running Kubernetes cluster and an understanding of the GitOps "pull" model, which is a major mental shift from the "push" model of GitHub Actions.
-
-The most effective way to progress is to use **GitHub Environments**. This feature allows students to implement professional CD strategies like **Manual Approvals**, **Wait Timers**, and **Environment-specific secrets** without leaving the GitHub interface.
+Next we shall explore **GitHub Environments**. This feature allows students to implement professional CD strategies like **Manual Approvals**, **Wait Timers**, and **Environment-specific secrets** without leaving the GitHub interface.
 
 ---
 
