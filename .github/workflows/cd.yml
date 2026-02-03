@@ -1,0 +1,35 @@
+name: Continuous Delivery (Production Release) Pipeline
+
+# This triggers only when a tag starting with 'v' is pushed (e.g., v1.0)
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Final Sanity Check
+        run: python -m unittest discover tests
+
+      - name: Package Application
+        run: |
+          mkdir -p release
+          cp src/calculator.py release/
+          tar -cvzf calculator-v${{ github.ref_name }}.tar.gz -C release .
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: calculator-v${{ github.ref_name }}.tar.gz
+          body: "Automated release of version ${{ github.ref_name }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
