@@ -34,3 +34,4 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/calculator-app:latest
             ${{ secrets.DOCKER_USERNAME }}/calculator-app:${{ github.sha }}
+            
